@@ -21,16 +21,13 @@ const Ui = () => {
 
   const handleChange = (e) => setMsg(e.target.value);
 
-  // Mockable send function
   const handleSend = async () => {
     setSend(true);
 
     try {
-      // Check if Cypress is running; mock POST request during testing
       if (window.Cypress) {
-        await new Promise((res) => setTimeout(res, 500)); // simulate network delay
+        await new Promise((res) => setTimeout(res, 500));
       } else {
-        // Real backend request
         await fetch("http://localhost:2643/sendmail", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -86,10 +83,10 @@ const Ui = () => {
       <Suspense>{success && <SuccessCheck />}</Suspense>
 
       {/* Title */}
-      <h1 className="text-3xl md:text-4xl font-semibold text-center pt-10 text-gray-50 tracking-tight drop-shadow-xl">
+      <h1 className="text-3xl md:text-4xl font-semibold text-center pt-10 text-gray-900 tracking-tight drop-shadow-xl">
         Bulkmail
       </h1>
-      <p className="text-sm md:text-base text-gray-200 mt-2 opacity-90">
+      <p className="text-sm md:text-base text-gray-800 mt-2 opacity-90">
         Send professional bulk emails effortlessly
       </p>
 
@@ -98,7 +95,7 @@ const Ui = () => {
         <textarea
           className="w-full md:w-[70%] lg:w-[55%] h-32 md:h-40 p-4 
             rounded-2xl bg-white/30 backdrop-blur-xl border border-white/20 shadow-2xl
-            text-black placeholder-gray-500
+            text-gray-900 placeholder-gray-500
             focus:ring-4 focus:ring-white/40 outline-none transition-all"
           placeholder="Write your message…"
           onChange={handleChange}
@@ -116,7 +113,7 @@ const Ui = () => {
         />
       </Suspense>
 
-      <div className="text-center mt-6 text-white font-medium text-lg drop-shadow">
+      <div className="text-center mt-6 text-gray-900 font-medium text-lg drop-shadow">
         Total Emails: {maildata.length}
       </div>
     </div>
