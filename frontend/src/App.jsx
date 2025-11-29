@@ -1,15 +1,15 @@
-import './App.css'
-import Ui from './components/Ui'
+import React, { Suspense } from 'react';
+import './App.css';
+
+// Lazy-load the Ui component
+const Ui = React.lazy(() => import('./components/Ui'));
 
 function App() {
-
-
-  return (
-    <>
-    <Ui/>
-      
-    </>
-  )
+return (
+<>
+<Suspense fallback={<div>Loading UI...</div>}> <Ui /> </Suspense>
+</>
+);
 }
 
-export default App
+export default App;
