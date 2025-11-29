@@ -1,0 +1,22 @@
+@keyframes bounceIn {
+  0% { transform: scale(0.4); opacity: 0; }
+  60% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+@keyframes checkPop {
+  0% { transform: scale(0.2); opacity: 0; }
+  70% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+.animate-bounceIn {
+  animation: bounceIn 0.5s cubic-bezier(.34,1.56,.64,1);
+}
+
+.animate-checkPop {
+  animation: checkPop 0.45s cubic-bezier(.34,1.56,.64,1);
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
