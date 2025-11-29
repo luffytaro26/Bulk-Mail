@@ -1,0 +1,4 @@
+Name	Email	Subject	Message
+Test User	testuser@example.com	Test Mail	Hello! This is a Cypress test message.
+John Doe	john@example.com	Welcome	Testing bulk email automation.
+Jane Smith	jane@example.com	Status	Update: This is sample data for Cypress.

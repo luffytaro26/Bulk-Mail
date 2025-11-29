@@ -1,29 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 
 const FileUpload = ({ handlefiles, maildataLength, handleSend, send }) => {
-return ( <div className="mx-auto w-[90%] md:w-[60%] lg:w-[40%] mt-10 p-10 
-   rounded-3xl border border-white/30 bg-white/20 backdrop-blur-xl
-   shadow-xl flex flex-col items-center justify-center gap-3 
-   hover:shadow-2xl transition-all">
+  const [sendSuccess, setSendSuccess] = useState(false);
 
-```
-  <p className="text-white font-medium mb-2 drop-shadow">Upload Excel file</p>
-  <input type="file" onChange={handlefiles} className="text-white" />
+  const onSend = async () => {
+    await handleSend();      // your send logic
+    setSendSuccess(true);    // show success message
+  };
 
-  <div className="text-center mt-8">
-    <button
-      className="bg-white/90 text-black py-3 px-8 rounded-full shadow-xl 
-        hover:bg-white active:scale-95 backdrop-blur-xl transition-all"
-      onClick={handleSend}
-      disabled={maildataLength === 0 || send}
-    >
-      {send ? "Sending..." : "Send Email"}
-    </button>
-  </div>
-</div>
+  return (
+    <div className="mx-auto w-[90%] md:w-[60%] lg:w-[40%] mt-10 p-10 
+      rounded-3xl border border-white/30 bg-white/20 backdrop-blur-xl
+      shadow-xl flex flex-col items-center justify-center gap-3 
+      hover:shadow-2xl transition-all">
 
+      <p className="text-white font-medium mb-2 drop-shadow">Upload Excel file</p>
+      <input type="file" onChange={handlefiles} className="text-white" data-cy="file-input" />
 
-);
+      <div className="text-center mt-8">
+        <button
+          className="bg-white/90 text-black py-3 px-8 rounded-full shadow-xl 
+            hover:bg-white active:scale-95 backdrop-blur-xl transition-all"
+          onClick={onSend}
+          disabled={maildataLength === 0 || send}
+          data-cy="send-btn"
+        >
+          {send ? "Sending..." : "Send Email"}
+        </button>
+      </div>
+
+      {sendSuccess && (
+        <p className="text-green-400 font-medium mt-4" data-cy="success-msg">
+          Email sent successfully
+        </p>
+      )}
+    </div>
+  );
 };
 
 export default FileUpload;
